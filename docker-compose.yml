@@ -1,0 +1,18 @@
+version: '2' #docker-compose version
+
+# Define your services/containers to be run
+services:
+    angular:
+        build: angular-client #file of dockerfile
+        ports: 
+            - "4200:4200" #specify ports
+    express:
+        build: express-server
+        ports:
+            - "3000:3000"
+        links: 
+            - database
+    database:
+        image: mongo # image to build
+        ports:
+            - "27017:27017"
